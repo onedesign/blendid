@@ -10,6 +10,7 @@ const projectPath     = require('./projectPath')
 const webpack         = require('webpack')
 const webpackManifest = require('./webpackManifest')
 const querystring     = require('querystring')
+const TerserPlugin    = require('terser-webpack-plugin-legacy')
 
 module.exports = function (env) {
 
@@ -88,7 +89,7 @@ module.exports = function (env) {
 
     webpackConfig.plugins.push(
       new webpack.DefinePlugin(TASK_CONFIG.javascripts.production.definePlugin),
-      new webpack.optimize.TerserPlugin(terserConfig),
+      new TerserPlugin(terserConfig),
       new webpack.NoEmitOnErrorsPlugin()
     )
   }
